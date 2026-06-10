@@ -1,8 +1,20 @@
-# Changelog — ATC Smart Contracts
+# Changelog — atc-contracts
 
-## Letzte Versionen
+## v3.0.0 — 10.06.2026
+Vollständiger Changelog: https://github.com/A-TownChain-Okosystems/a-townchain-os/blob/main/CHANGELOG.md
 
-- v2.1.0: Reentrancy-Guard, abstract method fixes
-- v2.0.0: ATC-8300/9000/9900 initial
+### Relevante Fixes
+- Fix #33 Gas-Fee Engine
 
-Vollständiger Changelog: [a-townchain-os/docs/CHANGELOG.md](https://github.com/A-TownChain-Okosystems/a-townchain-os/blob/main/docs/CHANGELOG.md)
+
+
+
+
+- Fix #26 Integration Tests 9/9
+
+- Fix #24 MultiSig Wallet
+
+
+
+
+- Fix #10 Bridge ETH+POL+BSC
