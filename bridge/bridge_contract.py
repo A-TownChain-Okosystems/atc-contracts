@@ -1,3 +1,4 @@
+# Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
 """
 Bridge Contract — ATC Cross-Chain Bridge
 ATC-5000 Standard: Lock-Mint / Burn-Release Schema

@@ -1,3 +1,4 @@
+# Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
 # blockchain/atcoin/atcoin.py
 # A-Town Coin — ATC Token (Standard ATC-8300)
 #
