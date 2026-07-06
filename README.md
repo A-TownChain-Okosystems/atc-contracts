@@ -1,5 +1,12 @@
 # atc-contracts
 
+> ## 🤖 Fuer KI-Agenten — Pflichtlektuere vor jeder Aenderung
+> Governance liegt zentral im Wiki-Repo `a-townchain-os-docs`:
+> 1. [`AGENT_POLICY.md`](https://github.com/A-TownChain-Okosystems/a-townchain-os-docs/blob/main/docs/AGENT_POLICY.md) — verbindliche Regeln, Reality-Check, Konsolidierungsziel
+> 2. [`AGENT_COORDINATION.md`](https://github.com/A-TownChain-Okosystems/a-townchain-os-docs/blob/main/docs/AGENT_COORDINATION.md) — wer arbeitet gerade woran, Todos, Agent-IDs
+> 3. [`DECISIONS_REGISTER.md`](https://github.com/A-TownChain-Okosystems/a-townchain-os-docs/blob/main/docs/DECISIONS_REGISTER.md) — verbindliche Architektur-Entscheidungen
+
+
 > **Smart Contracts: ATC-8300, ATC-9000, ATC-9900, Bridge**
 
 [![Layer](https://img.shields.io/badge/Layer-L4%2FL11-purple)](https://github.com/A-TownChain-Okosystems)
