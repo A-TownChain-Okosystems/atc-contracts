@@ -1,7 +1,7 @@
 # Testplan — atc-contracts
 
 **Standard:** ATC-STD-BUG-002/003-konform · **Test-Runner:** pytest (Python 3.11)
-**Status:** Tests: 55 (alle Klassen aus ATC-ORG-AUDIT-002 P1-001 abgedeckt)
+**Status:** Tests: 59/59 GRÜN (alle Klassen aus ATC-ORG-AUDIT-002 P1-001 abgedeckt)
 
 ## Abgedeckte Testklassen
 
