@@ -92,6 +92,9 @@ class GovernanceContract(BaseContract):
         self._balances:    dict[str, float]    = {}
 
     # ── Balance-Integration ────────────────────────────
+    def name(self) -> str:
+        return "ATC Governance DAO (ATC-9900)"
+
     def set_balance_oracle(self, balances: dict):
         """Setzt ATC-Balances (vom Token-Contract)."""
         self._balances = balances
