@@ -1,6 +1,6 @@
 # 📊 Status — atc-contracts
 
-> **Stand:** 2026-08-05 04:02 UTC
+> **Stand:** 2026-09-10 (SCR-0073: Sprach-Wahrheit = Python-Referenzmodell)
 > **Version:** v1.0.0
 > **Dateien:** 23
 
