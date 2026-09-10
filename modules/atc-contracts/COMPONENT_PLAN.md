@@ -52,7 +52,7 @@
 **Datei:** `atc8300/atc8300.atc`
 **Zeilen:** 96
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** init, name, symbol, decimals, total_supply, balance_of, transfer, approve (+6 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -64,7 +64,7 @@
 **Datei:** `atc8300/atc8300_token.atc`
 **Zeilen:** 178
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** struct Snapshot, init, name, total_supply, balance_of, mint, burn, transfer (+7 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -76,7 +76,7 @@
 **Datei:** `atc8300/atc8300_token.py`
 **Zeilen:** 126
 **Typ:** .py
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** __init__, name, total_supply, balance_of, mint, _mint, burn, transfer (+5 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -88,7 +88,7 @@
 **Datei:** `atcoin/atcoin.atc`
 **Zeilen:** 176
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** struct TxRecord, init, balance_of, transfer, approve, allowance, transfer_from, transfer_impl (+8 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -100,7 +100,7 @@
 **Datei:** `atcoin/atcoin.py`
 **Zeilen:** 139
 **Typ:** .py
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** __init__, balance_of, transfer, approve, allowance, transfer_from, mint, burn (+6 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -112,7 +112,7 @@
 **Datei:** `base/base_contract.atc`
 **Zeilen:** 69
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** init, only_owner, when_not_paused, pause, unpause, emit_event, get_event_count, info
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -124,7 +124,7 @@
 **Datei:** `base/base_contract.py`
 **Zeilen:** 87
 **Typ:** .py
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** __init__, to_dict, __init__, _gen_address, only_owner, when_not_paused, pause, unpause (+4 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -136,7 +136,7 @@
 **Datei:** `bridge/bridge_contract.atc`
 **Zeilen:** 172
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** struct BridgeTx, init, lock, mint_on_target, burn_and_release, refund, get_bridge_tx, get_stats (+2 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -148,7 +148,7 @@
 **Datei:** `bridge/bridge_contract.py`
 **Zeilen:** 133
 **Typ:** .py
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** to_dict, __init__, _tx_id, lock_and_bridge, confirm_mint, burn_and_release, get_tx, list_txs (+3 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -160,7 +160,7 @@
 **Datei:** `contracts/atc001/genesis_token.atc`
 **Zeilen:** 6
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** —
 
 **Status:** 🔄 STUB
@@ -172,7 +172,7 @@
 **Datei:** `contracts/atc001/genesis_token.py`
 **Zeilen:** 74
 **Typ:** .py
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** __init__, name, holder, supply, lock, transfer, provenance, verify
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -184,7 +184,7 @@
 **Datei:** `contracts/revenue.atc`
 **Zeilen:** 93
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** struct RevenueEntry, init, record_revenue, payout_franchisor, payout_franchisee, get_stats
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -196,7 +196,7 @@
 **Datei:** `contracts/solidity/test/ATCBridge.test.js`
 **Zeilen:** 274
 **Typ:** .js
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** —
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -208,7 +208,7 @@
 **Datei:** `contracts/token.atc`
 **Zeilen:** 72
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** init, name, symbol, decimals, total_supply, balance_of, transfer, mint (+3 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -220,7 +220,7 @@
 **Datei:** `governance/governance_contract.atc`
 **Zeilen:** 237
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** struct Proposal, init, set_balance_oracle, get_voting_power, create_proposal, vote, finalize_proposal, execute_proposal (+3 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -232,7 +232,7 @@
 **Datei:** `governance/governance_contract.py`
 **Zeilen:** 299
 **Typ:** .py
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** to_dict, __init__, set_balance_oracle, _get_voting_power, create_proposal, vote, finalize_proposal, execute_proposal (+5 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -244,7 +244,7 @@
 **Datei:** `smart_contract_registry.atc`
 **Zeilen:** 88
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** struct ContractEntry, init, deploy, get, list_all, call, set_paused, get_deploy_count
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -256,7 +256,7 @@
 **Datei:** `smart_contract_registry.py`
 **Zeilen:** 53
 **Typ:** .py
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** __init__, deploy, get, list_all, call, getattr, get_deploy_log
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -268,7 +268,7 @@
 **Datei:** `smart_contracts.atc`
 **Zeilen:** 486
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** struct ResourceAuction, struct AgentRecord, struct FLRound, struct GovernanceProposal, struct PaymentChannelState, init, create_auction, place_bid (+25 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -280,7 +280,7 @@
 **Datei:** `smart_contracts.py`
 **Zeilen:** 716
 **Typ:** .py
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** __init__, transfer, __init__, create_auction, place_bid, finalize_auction, __post_init__, __init__ (+22 weitere)
 
 **Status:** 🟢 IMPLEMENTIERT
@@ -292,7 +292,7 @@
 **Datei:** `standards/atc-13_fractional_asset_ownership.atc`
 **Zeilen:** 43
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** init, transfer, register, balance_of
 
 **Status:** 🔄 STUB
@@ -304,7 +304,7 @@
 **Datei:** `standards/atc-15_proof_of_ai_mining.atc`
 **Zeilen:** 43
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** init, transfer, register, balance_of
 
 **Status:** 🔄 STUB
@@ -316,7 +316,7 @@
 **Datei:** `standards/atc-16_referral_multitier_rewards.atc`
 **Zeilen:** 43
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** init, transfer, register, balance_of
 
 **Status:** 🔄 STUB
@@ -328,7 +328,7 @@
 **Datei:** `standards/atc-20_wrapped_synthetic_assets.atc`
 **Zeilen:** 43
 **Typ:** .atc
-**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. All Rights Reserved.
+**Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** init, transfer, register, balance_of
 
 **Status:** 🔄 STUB

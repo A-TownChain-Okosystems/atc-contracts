@@ -10,7 +10,7 @@ project:
   domain: contracts
   component: contracts
 language:
-  primary: rust
+  primary: python  # Referenzmodell; Rust-Track via ATC-VM-EXEC-Gate (F-084)
 license:
   type: apache-2.0
 security:
