@@ -30,3 +30,13 @@ Architekturentscheidungen: zentral im [DECISIONS_REGISTER](https://github.com/A-
 - **Roadmap:** Einordnung in die Lauffaehigkeits-Roadmap M1-M8 (AD-027) und Bauhierarchie L0-L7 (AD-026).
 - **Version:** CHANGELOG.md; SemVer; Releases als ATC-REL-X.Y.Z.
 - **License:** Apache-2.0 — Apache-2.0, Michael Wroblewski / ShivaCore / A-TownChain-Okosystems (ATC-LIC/ATS-LIC).
+
+
+## M-Status-Klarstellung (SCR-0080, 10.09.2026)
+
+**M6 = CLAIMED, nicht VERIFIED.** Der M6-Claim ("Dienste laufen") ist gemäß
+ATC-STD-MILESTONE-001 (kein Abschluss ohne überprüfbaren Nachweis) ohne
+M6-EVIDENCE-BUNDLE ein Claim, kein akzeptierter Meilenstein. Kanonischer,
+maschinenlesbarer Stand: `.atc/evidence/evidence.yaml`. Statusleiter:
+SPECIFIED → IMPLEMENTED → TESTED → VERIFIED → AUDITED → RELEASED.
+CLAIMED ≠ PASS · DOCUMENTED ≠ IMPLEMENTED · IMPLEMENTED ≠ VERIFIED.
