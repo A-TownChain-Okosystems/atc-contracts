@@ -89,65 +89,65 @@ contract BridgeContract {
     }
 
     fn mint_on_target(tx_id: Hash) -> bool {
-        let tx = self.bridge_txs.get(tx_id)
-        if tx == null {
+        let br_tx = self.bridge_txs.get(tx_id)
+        if br_tx == null {
             return false
         }
-        if tx.status != BridgeStatus::Locked {
+        if br_tx.status != BridgeStatus::Locked {
             return false
         }
-        tx.status = BridgeStatus::Minted
-        tx.completed = Time::now()
-        self.total_bridged += tx.amount
-        emit Minted(tx_id, tx.to_addr, tx.amount)
+        br_tx.status = BridgeStatus::Minted
+        br_tx.completed = Time::now()
+        self.total_bridged += br_tx.amount
+        emit Minted(tx_id, br_tx.to_addr, br_tx.amount)
         return true
     }
 
     fn burn_and_release(tx_id: Hash, release_addr: Address) -> bool {
-        let tx = self.bridge_txs.get(tx_id)
-        if tx == null {
+        let br_tx = self.bridge_txs.get(tx_id)
+        if br_tx == null {
             return false
         }
-        if tx.status != BridgeStatus::Locked {
+        if br_tx.status != BridgeStatus::Locked {
             return false
         }
         // Release locked tokens
-        tx.status = BridgeStatus::Released
-        tx.completed = Time::now()
-        let locked = self.locked_amounts.get(tx.from_addr)
-        if locked != null && locked >= tx.amount {
-            self.locked_amounts[tx.from_addr] = locked - tx.amount
+        br_tx.status = BridgeStatus::Released
+        br_tx.completed = Time::now()
+        let locked = self.locked_amounts.get(br_tx.from_addr)
+        if locked != null && locked >= br_tx.amount {
+            self.locked_amounts[br_tx.from_addr] = locked - br_tx.amount
         }
-        self.total_locked -= tx.amount
-        emit Released(tx_id, release_addr, tx.amount)
+        self.total_locked -= br_tx.amount
+        emit Released(tx_id, release_addr, br_tx.amount)
         return true
     }
 
     fn refund(tx_id: Hash, reason: String) -> bool {
-        let tx = self.bridge_txs.get(tx_id)
-        if tx == null {
+        let br_tx = self.bridge_txs.get(tx_id)
+        if br_tx == null {
             return false
         }
-        if tx.status != BridgeStatus::Locked {
+        if br_tx.status != BridgeStatus::Locked {
             return false
         }
-        tx.status = BridgeStatus::Refunded
-        tx.completed = Time::now()
-        let locked = self.locked_amounts.get(tx.from_addr)
-        if locked != null && locked >= tx.amount {
-            self.locked_amounts[tx.from_addr] = locked - tx.amount
+        br_tx.status = BridgeStatus::Refunded
+        br_tx.completed = Time::now()
+        let locked = self.locked_amounts.get(br_tx.from_addr)
+        if locked != null && locked >= br_tx.amount {
+            self.locked_amounts[br_tx.from_addr] = locked - br_tx.amount
         }
-        self.total_locked -= tx.amount
+        self.total_locked -= br_tx.amount
         emit Refunded(tx_id, reason)
         return true
     }
 
     fn get_bridge_tx(tx_id: Hash) -> (BridgeStatus, u128, u64, u64) {
-        let tx = self.bridge_txs.get(tx_id)
-        if tx == null {
+        let br_tx = self.bridge_txs.get(tx_id)
+        if br_tx == null {
             return (BridgeStatus::Failed, 0, 0, 0)
         }
-        return (tx.status, tx.amount, tx.created, tx.completed)
+        return (br_tx.status, br_tx.amount, br_tx.created, br_tx.completed)
     }
 
     fn get_stats() -> (u128, u128, u32) {
