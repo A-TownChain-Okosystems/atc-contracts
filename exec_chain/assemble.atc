@@ -100,6 +100,9 @@ fn tokenize(s: string) -> ScanResult {
         } else if ch == "*" {
             toks.push("*")
             pos = pos + 1
+        } else if ch == "/" {
+            toks.push("/")
+            pos = pos + 1
         } else if ch == "(" {
             toks.push("(")
             pos = pos + 1
@@ -140,6 +143,9 @@ fn op_name(op: string) -> string {
     }
     if op == "-" {
         return "Sub"
+    }
+    if op == "/" {
+        return "Div"
     }
     return "Mul"
 }
@@ -262,13 +268,14 @@ fn parse_term(toks: List<string>, pos: u64, env: map) -> ExprOut {
     }
     let ops = lhs.ops
     let cur = lhs.pos
-    while tok_at(toks, cur) == "*" {
+    while tok_at(toks, cur) == "*" || tok_at(toks, cur) == "/" {
+        let op = tok_at(toks, cur)
         let rhs = parse_factor(toks, cur + 1, env)
         if !rhs.ok {
             return rhs
         }
         ops = cat(ops, rhs.ops)
-        ops.push("Mul")
+        ops.push(op_name(op))
         cur = rhs.pos
     }
     return ExprOut { ok: true, msg: "", ops: ops, pos: cur }
@@ -313,6 +320,13 @@ fn simulate(ops: List<string>, expected: u64) -> SimResult {
             let b = st.pop()
             let a = st.pop()
             st.push(a * b)
+        } else if line == "Div" {
+            let b = st.pop()
+            if b == 0 {
+                return SimResult { ok: false, msg: "ERROR: DivisionByZero in Simulation", result: 0 }
+            }
+            let a = st.pop()
+            st.push(a / b)
         } else if line == "Halt" {
             // Halt: Auswertung endet hier — Rest wird ignoriert (wie .py)
             return sim_check(st, expected)

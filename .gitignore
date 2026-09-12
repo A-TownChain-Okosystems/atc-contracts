@@ -12,3 +12,4 @@ build/
 .venv*
 venv/
 .venv-t/
+exec_chain/tests/build/

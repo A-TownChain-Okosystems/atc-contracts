@@ -9,10 +9,10 @@ symbolische Parameter folgen mit dem vollstaendigen Compiler.
 """
 import argparse, hashlib, json, os, re, sys
 
-OPS = {"+": "Add", "-": "Sub", "*": "Mul"}
+OPS = {"+": "Add", "-": "Sub", "*": "Mul", "/": "Div"}
 
 def tokenize(s):
-    return re.findall(r"\d+|[A-Za-z_][A-Za-z0-9_]*|[()+\-*]", s)
+    return re.findall(r"\d+|[A-Za-z_][A-Za-z0-9_]*|[()+\-*/]", s)
 
 class Parser:
     def __init__(self, toks, env):
@@ -28,8 +28,8 @@ class Parser:
         return ops
     def term(self):
         ops = self.factor()
-        while self.peek() == "*":
-            self.take(); ops += self.factor(); ops.append("Mul")
+        while self.peek() in ("*", "/"):
+            op = self.take(); ops += self.factor(); ops.append(OPS[op])
         return ops
     def factor(self):
         tok = self.take()
@@ -53,6 +53,11 @@ def simulate(ops, expected):
             b = st.pop(); a = st.pop(); st.append((a - b) % 2**64)
         elif line == "Mul":
             b = st.pop(); a = st.pop(); st.append((a * b) % 2**64)
+        elif line == "Div":
+            b = st.pop(); a = st.pop()
+            if b == 0:
+                raise SystemExit("ERROR: DivisionByZero in Simulation")
+            st.append(a // b)
         elif line == "Halt":
             break
         else:
