@@ -27,6 +27,7 @@ while IFS= read -r -d '' file; do
     failed=$((failed + 1))
   fi
 done < <(find "$ROOT" -type f -name '*.atc' \
+  -not -path "$ROOT/atclang/*" \
   -not -path '*/node_modules/*' \
   -not -path '*/archive/*' -print0 | sort -z)
 
