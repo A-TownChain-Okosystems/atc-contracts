@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Copyright (c) 2026 Michael Wroblewski - Apache-2.0
 # EXEC-CHAIN-Testrunner (ATC-95-Testmigration, atc-contracts#5):
-#   .atc-Testvertrag + Vektor -> EXEC-CHAIN-Assembler -> .ops -> ATVM-Ausfuehrung
+#   .atc-Testvertrag + Vektor -> native Rust EXEC-GATE-Assembler -> .ops -> ATVM
 # Evidenz: Exit 0 = alle Tests PASS, Exit 1 = mind. ein FAIL (fail-closed).
 #
-# Nutzung:
+# Voraussetzung:
 #   ATC_VM_RUNNER=/pfad/zum/atc-vm-runner ./exec_chain/tests/run_tests.sh
 set -u
 BASE="$(cd "$(dirname "$0")" && pwd)"
@@ -16,21 +16,32 @@ if ! command -v "$VM_RUNNER" >/dev/null 2>&1; then
   echo "ERROR: atc-vm-runner nicht gefunden (ATC_VM_RUNNER setzen)" >&2
   exit 2
 fi
+if ! command -v jq >/dev/null 2>&1; then
+  echo "ERROR: jq wird fuer Testvektoren benoetigt" >&2
+  exit 2
+fi
 
 total=0; failed=0
 for atc in "$BASE"/t*.atc; do
+  [ -f "$atc" ] || continue
   name="$(basename "$atc" .atc)"
   vec="$BASE/vectors/${name%%_*}.json"
   ops_file="$BUILD_DIR/$name.ops"
   total=$((total + 1))
-  # Phase 1: Assembler (fail-fast, simuliert gegen Vektor)
-  if ! python3 "$BASE/../assemble.py" --contract "$atc" --vector "$vec" --out "$BUILD_DIR" >/dev/null 2>&1; then
-    echo "FAIL  $name (Assembler)"
+
+  # Phase 1: native Rust ATCLang EXEC-GATE assembler (no Python production path)
+  if ! "$VM_RUNNER" --contract "$atc" --vector "$vec" --out "$BUILD_DIR" >/dev/null 2>&1; then
+    echo "FAIL  $name (native assembler)"
     failed=$((failed + 1))
     continue
   fi
-  # Phase 2: ATVM-Ausfuehrung mit Vektorpruefung
-  expect="$(python3 -c "import json;print(json.load(open('$vec'))['expected'])")"
+
+  # Phase 2: native ATVM execution with the same vector expectation
+  expect="$(jq -er '.expected' "$vec")" || {
+    echo "FAIL  $name (invalid vector)"
+    failed=$((failed + 1))
+    continue
+  }
   if "$VM_RUNNER" --ops "$ops_file" --expect "$expect" >/dev/null 2>&1; then
     echo "PASS  $name ($(grep -vc '^#' "$ops_file") Ops, expected=$expect)"
   else
@@ -39,28 +50,25 @@ for atc in "$BASE"/t*.atc; do
   fi
 done
 
-# ─── Bytecode-Fixtures: Verhaltensfluesse direkt auf der ATVM ────────────
-# (Contract-Execution-Inkrement 1: Storage/Caller/Permissions — die .ops-
-#  Programme sind hand-gestellte Bytecode-Tests, kein Assembler-Output.)
+# Bytecode fixtures: direct ATVM behaviour tests (Storage/Caller/Permissions).
 for ops_f in "$BASE"/ops/*.ops; do
+  [ -f "$ops_f" ] || continue
   name="$(basename "$ops_f" .ops)"
   vec="$BASE/ops/$name.json"
   total=$((total + 1))
-  flags="$(python3 - "$vec" << 'PYV'
-import json, sys
-v = json.load(open(sys.argv[1]))
-parts = []
-for k, val in v.get("set_slot", {}).items():
-    parts += ["--set-slot", f"{k}:{val}"]
-for k, val in v.get("expect_slot", {}).items():
-    parts += ["--expect-slot", f"{k}:{val}"]
-if "caller" in v:
-    parts += ["--caller", str(v["caller"])]
-parts += ["--expect", str(v["expected"])]
-print(" ".join(parts))
-PYV
-)"
-  if "$VM_RUNNER" --ops "$ops_f" $flags >/dev/null 2>&1; then
+
+  args=(--ops "$ops_f" --expect "$(jq -er '.expected' "$vec")")
+  while IFS= read -r item; do
+    args+=(--set-slot "$item")
+  done < <(jq -r '.set_slot // {} | to_entries[] | "\(.key):\(.value)"' "$vec")
+  while IFS= read -r item; do
+    args+=(--expect-slot "$item")
+  done < <(jq -r '.expect_slot // {} | to_entries[] | "\(.key):\(.value)"' "$vec")
+  if jq -e 'has("caller")' "$vec" >/dev/null 2>&1; then
+    args+=(--caller "$(jq -er '.caller' "$vec")")
+  fi
+
+  if "$VM_RUNNER" "${args[@]}" >/dev/null 2>&1; then
     echo "PASS  $name (Bytecode, ATVM + Storage-Evidenz)"
   else
     echo "FAIL  $name (Bytecode)"
