@@ -1,5 +1,0 @@
-# atc-contracts — Dependencies
-# Teil des A-TownChain Ökosystems
-
-cryptography>=50.0.1
-pytest>=9.1.1
