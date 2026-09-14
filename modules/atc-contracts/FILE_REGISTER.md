@@ -1,54 +1,16 @@
-# 📋 File Register — atc-contracts
+# 📋 File Register — atc-contracts module mirror
 
-> **Zweck:** Vollständige Liste aller existierenden Dateien in `atc-contracts`.
-> Dient als Nachweis, welche Dateien tatsächlich existieren.
->
-> **Auto-generiert:** 2026-08-05 04:50 UTC | **Agent:** Aurora (MasterBrain · Base44)
-> **Letzter Commit:** `unified naming conventions — A-TownChain-Okosystems→A-TownChain-Okosystem`
+This directory is a synchronized ATCLang mirror of the canonical `atc-contracts` sources.
 
----
+## Production-language policy
 
-## Zusammenfassung
+- Production contract implementations: **ATCLang only**
+- Production `.py` contract implementations: **0**
+- Python contract runtime dependency: **removed**
+- Python package setup/dependencies: **removed**
 
-| Metrik | Wert |
-|--------|------|
-| **Total Dateien** | 23 |
-| **Markdown (.md)** | 7 |
-| **Python (.py)** | 9 |
-| **ATCLang (.atc)** | 4 |
-| **JavaScript (.js)** | 0 |
-| **Andere** | 3 |
+The canonical source of truth is the repository root. This mirror must not reintroduce Python contract implementations.
 
----
+## Verification
 
-## Dateiliste
-
-| Datei | Zeilen | Typ |
-|------|--------|-----|
-| `.gitignore` | 23 | .gitignore |
-| `CHANGELOG.md` | 20 | md |
-| `DEPLOYMENT.md` | 29 | md |
-| `FILE_REGISTER.md` | 28 | md |
-| `LICENSE` | 22 | license |
-| `README.md` | 121 | md |
-| `ROADMAP.md` | 21 | md |
-| `SECURITY.md` | 13 | md |
-| `STATUS.md` | 19 | md |
-| `atc8300/atc8300.atc` | 96 | atc |
-| `atc8300/atc8300_token.py` | 126 | py |
-| `atcoin/atcoin.py` | 139 | py |
-| `base/base_contract.py` | 87 | py |
-| `bridge/bridge_contract.py` | 133 | py |
-| `governance/governance.atc` | 113 | atc |
-| `governance/governance_contract.py` | 299 | py |
-| `marketplace/marketplace_contract.py` | 301 | py |
-| `requirements.txt` | 5 | txt |
-| `shivamon/shivamon.atc` | 162 | atc |
-| `shivamon/shivamon_contract.py` | 270 | py |
-| `wallet/ecdsa.py` | 72 | py |
-| `wallet/keygen.py` | 140 | py |
-| `wallet/wallet.atc` | 124 | atc |
-
----
-
-*atc-contracts · A-TownChain Ökosystem · v1.0.0*
+The root repository validates all `.atc` files with the ATCLang consensus SecurityGate and semantic compiler, and validates executable behavior through the native Rust ATVM EXEC-CHAIN gate.
