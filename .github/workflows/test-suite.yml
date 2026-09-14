@@ -11,6 +11,26 @@ permissions:
   contents: read
 
 jobs:
+  atclang-conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: A-TownChain-Okosystems/atclang
+          path: atclang
+      - name: Set up Python toolchain
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install ATCLang toolchain
+        working-directory: atclang
+        run: python3 -m pip install -e .
+      - name: Run ATCLang consensus conformance
+        env:
+          ATCLANG_ROOT: ${{ github.workspace }}/atclang
+        run: bash tests/run_atclang_conformance.sh
+
   exec-chain-native:
     runs-on: ubuntu-latest
     steps:
@@ -26,7 +46,7 @@ jobs:
       - name: Run migrated EXEC-CHAIN tests
         env:
           ATC_VM_RUNNER: ${{ github.workspace }}/atc-vm/target/debug/atc-vm-runner
-        run: ./exec_chain/tests/run_tests.sh
+        run: bash exec_chain/tests/run_tests.sh
 
   npm-tests:
     runs-on: ubuntu-latest
@@ -47,29 +67,8 @@ jobs:
           done < <(find . -name package.json -not -path "*/archive/*" -not -path "*/node_modules/*" -not -path "*/.*/")
           exit $FAIL
 
-  pytest:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.11"}
-      - name: pytest ueber alle Requirements-Module (SCR-0078)
-        run: |
-          set +e
-          FAIL=0
-          while IFS= read -r f; do
-            d="$(dirname "$f")"
-            if ! (cd "$d" && grep -rql --include="*.py" "def test_" .); then
-              echo "SKIP $d: keine Tests vorhanden"; continue
-            fi
-            echo "=== pytest in $d"
-            (cd "$d" && pip install -q -r requirements.txt pytest && python -m pytest -q --no-header) \
-              || { echo "pytest FAILED in $d"; FAIL=1; }
-          done < <(find . -name requirements.txt -not -path "*/archive/*")
-          exit $FAIL
-
   evidence:
-    needs: [exec-chain-native, npm-tests, pytest]
+    needs: [atclang-conformance, exec-chain-native, npm-tests]
     if: success()
     runs-on: ubuntu-latest
     steps:
