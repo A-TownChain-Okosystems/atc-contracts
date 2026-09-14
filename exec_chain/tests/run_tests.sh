@@ -2,6 +2,7 @@
 # Copyright (c) 2026 Michael Wroblewski - Apache-2.0
 # EXEC-CHAIN-Testrunner (ATC-95-Testmigration, atc-contracts#5):
 #   .atc-Testvertrag + Vektor -> native Rust EXEC-GATE-Assembler -> .ops -> ATVM
+# Native assembler implementation: atc-vm/src/assembler.rs (Rust, dependency-free).
 # Evidenz: Exit 0 = alle Tests PASS, Exit 1 = mind. ein FAIL (fail-closed).
 #
 # Voraussetzung:
@@ -29,14 +30,12 @@ for atc in "$BASE"/t*.atc; do
   ops_file="$BUILD_DIR/$name.ops"
   total=$((total + 1))
 
-  # Phase 1: native Rust ATCLang EXEC-GATE assembler (no Python production path)
   if ! "$VM_RUNNER" --contract "$atc" --vector "$vec" --out "$BUILD_DIR" >/dev/null 2>&1; then
     echo "FAIL  $name (native assembler)"
     failed=$((failed + 1))
     continue
   fi
 
-  # Phase 2: native ATVM execution with the same vector expectation
   expect="$(jq -er '.expected' "$vec")" || {
     echo "FAIL  $name (invalid vector)"
     failed=$((failed + 1))
@@ -50,7 +49,6 @@ for atc in "$BASE"/t*.atc; do
   fi
 done
 
-# Bytecode fixtures: direct ATVM behaviour tests (Storage/Caller/Permissions).
 for ops_f in "$BASE"/ops/*.ops; do
   [ -f "$ops_f" ] || continue
   name="$(basename "$ops_f" .ops)"
