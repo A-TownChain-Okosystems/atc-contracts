@@ -7,34 +7,53 @@ muss dem erwarteten Vektorwert entsprechen, sonst Exit 1 (No-Evidence-No-Claim).
 MVP-Ehrlichkeit: Parameterwerte werden je Testvektor konkret substituiert;
 symbolische Parameter folgen mit dem vollstaendigen Compiler.
 """
-import argparse, hashlib, json, os, re, sys
+
+import argparse
+import hashlib
+import json
+import os
+import re
 
 OPS = {"+": "Add", "-": "Sub", "*": "Mul", "/": "Div"}
+
 
 def tokenize(s):
     return re.findall(r"\d+|[A-Za-z_][A-Za-z0-9_]*|[()+\-*/]", s)
 
+
 class Parser:
     def __init__(self, toks, env):
         self.t, self.i, self.env = toks, 0, env
+
     def peek(self):
         return self.t[self.i] if self.i < len(self.t) else None
+
     def take(self):
-        tok = self.t[self.i]; self.i += 1; return tok
+        tok = self.t[self.i]
+        self.i += 1
+        return tok
+
     def expr(self):
         ops = self.term()
         while self.peek() in ("+", "-"):
-            op = self.take(); ops += self.term(); ops.append(OPS[op])
+            op = self.take()
+            ops += self.term()
+            ops.append(OPS[op])
         return ops
+
     def term(self):
         ops = self.factor()
         while self.peek() in ("*", "/"):
-            op = self.take(); ops += self.factor(); ops.append(OPS[op])
+            op = self.take()
+            ops += self.factor()
+            ops.append(OPS[op])
         return ops
+
     def factor(self):
         tok = self.take()
         if tok == "(":
-            ops = self.expr(); assert self.take() == ")", "unbalancierte Klammer"
+            ops = self.expr()
+            assert self.take() == ")", "unbalancierte Klammer"
             return ops
         if tok.isdigit():
             return ["Push " + tok]
@@ -42,19 +61,27 @@ class Parser:
             return list(self.env[tok])
         raise SystemExit("ERROR: unbekannter Bezeichner in Ausdruck: " + tok)
 
+
 def simulate(ops, expected):
     st = []
     for line in ops:
         if line.startswith("Push"):
             st.append(int(line.split()[1]))
         elif line == "Add":
-            b = st.pop(); a = st.pop(); st.append((a + b) % 2**64)
+            b = st.pop()
+            a = st.pop()
+            st.append((a + b) % 2**64)
         elif line == "Sub":
-            b = st.pop(); a = st.pop(); st.append((a - b) % 2**64)
+            b = st.pop()
+            a = st.pop()
+            st.append((a - b) % 2**64)
         elif line == "Mul":
-            b = st.pop(); a = st.pop(); st.append((a * b) % 2**64)
+            b = st.pop()
+            a = st.pop()
+            st.append((a * b) % 2**64)
         elif line == "Div":
-            b = st.pop(); a = st.pop()
+            b = st.pop()
+            a = st.pop()
             if b == 0:
                 raise SystemExit("ERROR: DivisionByZero in Simulation")
             st.append(a // b)
@@ -66,6 +93,7 @@ def simulate(ops, expected):
     if result != expected:
         raise SystemExit("ERROR: Simulation %d != erwartet %d" % (result, expected))
 
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--contract", default="exec_chain/e2e_adder.atc")
@@ -74,7 +102,7 @@ def main():
     a = ap.parse_args()
     src = open(a.contract, encoding="utf-8").read()
     vec = json.load(open(a.vector, encoding="utf-8"))
-    m = re.search(r"fn\s+(\w+)\s*\(([^)]*)\)[^{]*\{(.*?)\n    \}", src, re.S)
+    m = re.search(r"fn\s+(\w+)\s*\(([^)]*)\)[^{]*\{(.*?)\n    \}", src, re.DOTALL)
     if not m:
         raise SystemExit("ERROR: keine compilierbare fn-Definition im Subset gefunden")
     fname, params_raw, body = m.group(1), m.group(2), m.group(3)
@@ -101,9 +129,13 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     outp = os.path.join(a.out, stem + ".ops")
     with open(outp, "w", encoding="utf-8") as f:
-        f.write("# contract: %s\n# fn: %s\n# source_sha256: %s\n# expected: %s\n" % (stem, fname, sha, vec["expected"]))
+        f.write(
+            "# contract: %s\n# fn: %s\n# source_sha256: %s\n# expected: %s\n"
+            % (stem, fname, sha, vec["expected"])
+        )
         f.write("\n".join(ops) + "\n")
     print("OK: %s -> %s (%d Ops, Simulation PASS)" % (a.contract, outp, len(ops)))
+
 
 if __name__ == "__main__":
     main()

@@ -6,7 +6,10 @@ Issue #1: Smart Contract Implementation
 Der Genesis-Token ist der erste und einzige ATC-001 Token.
 Unveraenderlich, nicht mintbar — symbolisiert den Ursprung der Chain.
 """
-import hashlib, time
+
+import hashlib
+import time
+
 from blockchain.contracts.base.base_contract import BaseContract
 
 
@@ -17,20 +20,23 @@ class GenesisToken(BaseContract):
     """
 
     GENESIS_SUPPLY = 21_000_000.0  # 21 Mio ATC — wie Bitcoin Referenz
-    SYMBOL         = "ATC-001"
-    GENESIS_HASH   = hashlib.sha256(b"A-TownChain Genesis Block 2026").hexdigest()
+    SYMBOL = "ATC-001"
+    GENESIS_HASH = hashlib.sha256(b"A-TownChain Genesis Block 2026").hexdigest()
 
     def __init__(self, creator: str):
         super().__init__(creator, contract_id="ATC_GENESIS_001")
-        self._holder     = creator
-        self._locked     = False
+        self._holder = creator
+        self._locked = False
         self._transfer_log: list[dict] = []
-        self._emit("Genesis", {
-            "creator": creator,
-            "supply":  self.GENESIS_SUPPLY,
-            "hash":    self.GENESIS_HASH,
-            "ts":      int(time.time()),
-        })
+        self._emit(
+            "Genesis",
+            {
+                "creator": creator,
+                "supply": self.GENESIS_SUPPLY,
+                "hash": self.GENESIS_HASH,
+                "ts": int(time.time()),
+            },
+        )
 
     def name(self) -> str:
         return "A-TownChain Genesis Token"
@@ -54,7 +60,7 @@ class GenesisToken(BaseContract):
             raise RuntimeError("Genesis Token is permanently locked")
         old = self._holder
         self._holder = new_holder
-        self.owner   = new_holder  # Neuer Owner = neuer Hüter
+        self.owner = new_holder  # Neuer Owner = neuer Hüter
         log = {"from": old, "to": new_holder, "ts": int(time.time())}
         self._transfer_log.append(log)
         self._emit("GenesisTransfer", log)
@@ -65,10 +71,10 @@ class GenesisToken(BaseContract):
 
     def verify(self) -> dict:
         return {
-            "valid":        True,
-            "symbol":       self.SYMBOL,
+            "valid": True,
+            "symbol": self.SYMBOL,
             "genesis_hash": self.GENESIS_HASH,
-            "supply":       self.GENESIS_SUPPLY,
-            "holder":       self._holder,
-            "locked":       self._locked,
+            "supply": self.GENESIS_SUPPLY,
+            "holder": self._holder,
+            "locked": self._locked,
         }

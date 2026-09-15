@@ -5,12 +5,20 @@ Paritaet Python-Implementierung <-> .atc-Spezifikation, Struktur-Marker und
 Basis-Invarianten. Bei Verfuegbarkeit der ATCLang-VM kann der Harness um
 Bytecode-Ausfuehrung erweitert werden.
 """
+
 import os
+
 import pytest
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CONTRACT_DIRS = ["base", "atcoin", "atc8300", "governance", "bridge",
-                 "contracts/atc001"]
+CONTRACT_DIRS = [
+    "base",
+    "atcoin",
+    "atc8300",
+    "governance",
+    "bridge",
+    "contracts/atc001",
+]
 ROOT_CONTRACTS = ["smart_contracts", "smart_contract_registry"]
 
 

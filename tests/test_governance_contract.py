@@ -1,5 +1,7 @@
 """Lifecycle-, Authorization-, Quorum- und Timelock-Tests fuer GovernanceContract."""
+
 import time
+
 import pytest
 from blockchain.contracts.governance.governance_contract import GovernanceContract
 
@@ -12,8 +14,9 @@ def gov():
 
 
 def _make(gov, options=("yes", "no"), period=60):
-    res = gov.create_proposal("gov-owner", "Test", "Beschreibung", list(options),
-                              voting_period_secs=period)
+    res = gov.create_proposal(
+        "gov-owner", "Test", "Beschreibung", list(options), voting_period_secs=period
+    )
     assert res["success"] is True
     return gov.proposal_ids[-1]
 

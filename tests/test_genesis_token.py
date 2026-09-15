@@ -1,4 +1,5 @@
 """Provenance- und Locking-Tests fuer GenesisToken (ATC-001)."""
+
 import pytest
 from blockchain.contracts.atc001.genesis_token import GenesisToken
 

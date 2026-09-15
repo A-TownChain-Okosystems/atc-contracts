@@ -3,7 +3,9 @@
 SmartContractRegistry — Zentrales Contract-Management
 Issue #1: Smart Contract Implementation
 """
+
 import time
+
 from blockchain.contracts.base.base_contract import BaseContract
 
 
@@ -21,10 +23,10 @@ class SmartContractRegistry:
         addr = contract.address
         self._contracts[addr] = contract
         log = {
-            "address":  addr,
-            "name":     contract.name(),
+            "address": addr,
+            "name": contract.name(),
             "deployer": deployer,
-            "ts":       int(time.time()),
+            "ts": int(time.time()),
         }
         self._deploy_log.append(log)
         print(f"[REGISTRY] Deployed: {contract.name()} @ {addr}")
@@ -37,8 +39,7 @@ class SmartContractRegistry:
 
     def list_all(self) -> list:
         return [
-            {"address": addr, "name": c.name(),
-             "paused": c.paused, "owner": c.owner}
+            {"address": addr, "name": c.name(), "paused": c.paused, "owner": c.owner}
             for addr, c in self._contracts.items()
         ]
 

@@ -8,8 +8,10 @@ Implementierungen lassen den kompletten Build rot werden.
 Haette vor dem GovernanceContract-Fix (08.09.2026, Issue #99) FAILED geliefert
 und haette den Bug vor dem Registry-Crash gefunden.
 """
-import ast, os, glob
-import pytest
+
+import ast
+import glob
+import os
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,13 +37,21 @@ def _scan(root):
                 abstract_defs.setdefault(node.name, set()).update(abstracts)
                 class_defs.setdefault(node.name, set()).update(methods)
                 for b in node.bases:
-                    inherits.append((os.path.relpath(path, root), node.name, ast.unparse(b).split("(")[0].strip()))
+                    inherits.append(
+                        (
+                            os.path.relpath(path, root),
+                            node.name,
+                            ast.unparse(b).split("(")[0].strip(),
+                        )
+                    )
     violations = []
     for path, cls, base in inherits:
         if base in abstract_defs and base != cls:
             missing = abstract_defs[base] - class_defs.get(cls, set())
             if missing:
-                violations.append(f"{path}: Klasse {cls} erbt {base}, implementiert aber nicht: {sorted(missing)}")
+                violations.append(
+                    f"{path}: Klasse {cls} erbt {base}, implementiert aber nicht: {sorted(missing)}"
+                )
     return violations
 
 
@@ -57,11 +67,14 @@ def test_no_unimplemented_abstract_methods_anywhere():
 def test_base_contract_subclasses_are_instantiable():
     """Direkter Instanziierungs-Gate: jede konkrete BaseContract-Subklasse muss
     instanziierbar sein (GovernanceContract-Bug war genau das Gegenteil)."""
-    import sys, importlib.util, types
+    import sys
+
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from conftest import _register  # Shim laedt alle Vertragsmodule
-    from blockchain.contracts.governance.governance_contract import GovernanceContract
-    from blockchain.contracts.atc8300.atc8300_token import ATC8300Token
     from blockchain.contracts.atc001.genesis_token import GenesisToken
+    from blockchain.contracts.atc8300.atc8300_token import ATC8300Token
+    from blockchain.contracts.governance.governance_contract import GovernanceContract
+
     for cls in (GovernanceContract, ATC8300Token, GenesisToken):
-        assert not cls.__abstractmethods__, f"{cls.__name__} hat unimplementierte abstrakte Methoden: {cls.__abstractmethods__}"
+        assert not cls.__abstractmethods__, (
+            f"{cls.__name__} hat unimplementierte abstrakte Methoden: {cls.__abstractmethods__}"
+        )

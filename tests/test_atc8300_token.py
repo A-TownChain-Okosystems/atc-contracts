@@ -1,4 +1,5 @@
 """Authorization-, Fee-, Snapshot- und Revert-Tests fuer ATC8300Token."""
+
 import pytest
 from blockchain.contracts.atc8300.atc8300_token import ATC8300Token
 
@@ -30,7 +31,7 @@ def test_mint_positive_amounts_only(token):
 
 
 def test_transfer_with_fee_routing(token):
-    res = token.transfer("bob", "carol", 100.0)
+    _res = token.transfer("bob", "carol", 100.0)
     assert token.balance_of("bob") == pytest.approx(899.999)
     assert token.balance_of("carol") == pytest.approx(100.0)
     assert token.balance_of("alice") == pytest.approx(0.001)  # Fee -> Owner

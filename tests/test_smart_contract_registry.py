@@ -1,13 +1,17 @@
 """Registry-Operations- und Invokations-Tests fuer SmartContractRegistry."""
+
 import pytest
 from blockchain.contracts.base.base_contract import BaseContract
-from blockchain.contracts.atc001.genesis_token import GenesisToken
+
 from smart_contract_registry import SmartContractRegistry
 
 
 class DummyContract(BaseContract):
-    def name(self): return "Dummy"
-    def ping(self): return "pong"
+    def name(self):
+        return "Dummy"
+
+    def ping(self):
+        return "pong"
 
 
 def test_deploy_get_list_call():

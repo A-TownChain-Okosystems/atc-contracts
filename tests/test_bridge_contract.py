@@ -1,6 +1,11 @@
 """Lock-Mint/Burn-Release-, Limit- und Security-Tests fuer BridgeContract (ATC-5000)."""
+
 import pytest
-from blockchain.contracts.bridge.bridge_contract import BridgeContract, ChainId, BridgeTxStatus
+from blockchain.contracts.bridge.bridge_contract import (
+    BridgeContract,
+    BridgeTxStatus,
+    ChainId,
+)
 
 
 @pytest.fixture
@@ -21,7 +26,7 @@ def test_lock_mint_burn_release(bridge):
 
 def test_limits_and_chains(bridge):
     with pytest.raises(ValueError):
-        bridge.lock_and_bridge("a", "b", 9.99, ChainId.ETH)     # unter MIN_AMOUNT
+        bridge.lock_and_bridge("a", "b", 9.99, ChainId.ETH)  # unter MIN_AMOUNT
     with pytest.raises(ValueError):
         bridge.lock_and_bridge("a", "b", 1_000_001.0, ChainId.ETH)  # ueber MAX_AMOUNT
     with pytest.raises(ValueError):

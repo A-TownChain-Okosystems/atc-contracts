@@ -1,4 +1,5 @@
 """Unit-, Authorization-, State- und Revert-Tests fuer BaseContract."""
+
 import pytest
 from blockchain.contracts.base.base_contract import BaseContract
 
@@ -89,7 +90,7 @@ def test_get_events_filter(contract):
 
 
 def test_event_payload(contract):
-    events = contract.get_events()
+    _events = contract.get_events()
     contract.pause("alice")
     ev = contract.get_events("Paused")[0]
     assert ev["event"] == "Paused"
