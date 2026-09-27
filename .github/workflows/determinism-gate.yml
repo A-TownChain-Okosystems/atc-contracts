@@ -25,9 +25,6 @@ jobs:
         with:
           python-version: '3.11'
       - uses: dtolnay/rust-toolchain@stable
-      - name: Install ATCLang toolchain
-        working-directory: atclang
-        run: python3 -m pip install -e .
       - name: Build native ATVM runner
         working-directory: atc-vm
         run: cargo build --locked --bin atc-vm-runner
