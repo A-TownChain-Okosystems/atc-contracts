@@ -4,7 +4,7 @@
 // verbleibender Mint-Spielraum = 0 (weitere Mints muessen fehlschlagen).
 contract T03AtCoinSupplyCap {
     fn compute(minted_total: u64) -> u64 {
-        let max_supply = 21000000
+        let max_supply = 360000000000000000000000000
         let remaining_cap = max_supply - minted_total
         return remaining_cap
     }
