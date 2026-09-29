@@ -18,7 +18,6 @@
 
 | # | Datei | Zeilen | Typ | Beschreibung |
 |---|-------|--------|-----|-------------|
-| 1 | `atc8300/atc8300.atc` | 96 | .atc | Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownCh... |
 | 2 | `atc8300/atc8300_token.atc` | 178 | .atc | Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownCh... |
 | 3 | `atc8300/atc8300_token.py` | 126 | .py | Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownCh... |
 | 4 | `atcoin/atcoin.atc` | 176 | .atc | Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownCh... |
@@ -47,10 +46,8 @@
 
 ## Detaillierte Komponenten
 
-### 1. `atc8300/atc8300.atc`
-
-**Datei:** `atc8300/atc8300.atc`
-**Zeilen:** 96
+### 1. 
+**Datei:** **Zeilen:** 96
 **Typ:** .atc
 **Beschreibung:** Copyright (c) 2026 Michael Wroblewski / ShivaCore / A-TownChain-Okosystems. Apache-2.0 lizenziert — siehe LICENSE
 **Funktionen/Structs:** init, name, symbol, decimals, total_supply, balance_of, transfer, approve (+6 weitere)

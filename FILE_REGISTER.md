@@ -15,7 +15,6 @@
 
 ## Canonical contract sources
 
-- `atc8300/atc8300.atc`
 - `atc8300/atc8300_token.atc`
 - `atcoin/atcoin.atc`
 - `base/base_contract.atc`
