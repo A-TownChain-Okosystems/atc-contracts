@@ -40,3 +40,19 @@ M6-EVIDENCE-BUNDLE ein Claim, kein akzeptierter Meilenstein. Kanonischer,
 maschinenlesbarer Stand: `.atc/evidence/evidence.yaml`. Statusleiter:
 SPECIFIED → IMPLEMENTED → TESTED → VERIFIED → AUDITED → RELEASED.
 CLAIMED ≠ PASS · DOCUMENTED ≠ IMPLEMENTED · IMPLEMENTED ≠ VERIFIED.
+
+
+## Native ATC Smart Contract Format
+
+The repository now defines the native `.atc` Smart Contract Format in
+`docs/specs/ATC-SCF-001.md`. The format is an independent ATC contract
+source/profile targeting ATC-VM, with native metadata directives, standards,
+capabilities, policies and deterministic artifact evidence.
+
+Machine-readable format profile: `.atc/contract-format.yaml`.
+
+Reference example: `examples/ATCAvatarNFT.atc`.
+
+This specification is intentionally separate from the ATC-VM implementation
+and from the canonical ATCLang compiler implementation; compiler support must
+be introduced only through the applicable ATCLang/ATC-VM conformance gates.
