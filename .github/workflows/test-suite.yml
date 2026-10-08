@@ -19,13 +19,13 @@ jobs:
         with:
           repository: A-TownChain-Okosystems/atclang
           path: atclang
-      - name: Set up Python toolchain
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - name: Install ATCLang toolchain
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build canonical ATCLang CLI
         working-directory: atclang
-        run: python3 -m pip install -e .
+        env:
+          CARGO_TARGET_DIR: ${{ github.workspace }}/atclang/target
+        run: cargo build --release --manifest-path crates/atc-core/Cargo.toml
       - name: Run ATCLang consensus conformance
         env:
           ATCLANG_ROOT: ${{ github.workspace }}/atclang
