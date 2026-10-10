@@ -22,7 +22,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: Build ATCLang CLI
         working-directory: atclang
-        run: cargo build --locked --release --bin atc
+        run: cargo build --locked --release --bin atc --manifest-path crates/atc-core/Cargo.toml
       - name: Run ATCLang consensus conformance
         env:
           ATCLANG_ROOT: ${{ github.workspace }}/atclang
