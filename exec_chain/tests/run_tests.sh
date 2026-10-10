@@ -13,11 +13,11 @@ VM_RUNNER="${ATC_VM_RUNNER:-atc-vm-runner}"
 BUILD_DIR="${BASE}/build"
 mkdir -p "$BUILD_DIR"
 
-if ! command -v "$VM_RUNNER" >/dev/null 2>&1; then
+if ! command -v "$VM_RUNNER" >/dev/null; then
   echo "ERROR: atc-vm-runner nicht gefunden (ATC_VM_RUNNER setzen)" >&2
   exit 2
 fi
-if ! command -v jq >/dev/null 2>&1; then
+if ! command -v jq >/dev/null; then
   echo "ERROR: jq wird fuer Testvektoren benoetigt" >&2
   exit 2
 fi
@@ -30,7 +30,7 @@ for atc in "$BASE"/t*.atc; do
   ops_file="$BUILD_DIR/$name.ops"
   total=$((total + 1))
 
-  if ! "$VM_RUNNER" --contract "$atc" --vector "$vec" --out "$BUILD_DIR" >/dev/null 2>&1; then
+  if ! "$VM_RUNNER" --contract "$atc" --vector "$vec" --out "$BUILD_DIR" >/dev/null; then
     echo "FAIL  $name (native assembler)"
     failed=$((failed + 1))
     continue
@@ -41,7 +41,7 @@ for atc in "$BASE"/t*.atc; do
     failed=$((failed + 1))
     continue
   }
-  if "$VM_RUNNER" --ops "$ops_file" --expect "$expect" >/dev/null 2>&1; then
+  if "$VM_RUNNER" --ops "$ops_file" --expect "$expect" >/dev/null; then
     echo "PASS  $name ($(grep -vc '^#' "$ops_file") Ops, expected=$expect)"
   else
     echo "FAIL  $name (ATVM, expected=$expect)"
@@ -62,11 +62,11 @@ for ops_f in "$BASE"/ops/*.ops; do
   while IFS= read -r item; do
     args+=(--expect-slot "$item")
   done < <(jq -r '.expect_slot // {} | to_entries[] | "\(.key):\(.value)"' "$vec")
-  if jq -e 'has("caller")' "$vec" >/dev/null 2>&1; then
+  if jq -e 'has("caller")' "$vec" >/dev/null; then
     args+=(--caller "$(jq -er '.caller' "$vec")")
   fi
 
-  if "$VM_RUNNER" "${args[@]}" >/dev/null 2>&1; then
+  if "$VM_RUNNER" "${args[@]}" >/dev/null; then
     echo "PASS  $name (Bytecode, ATVM + Storage-Evidenz)"
   else
     echo "FAIL  $name (Bytecode)"
