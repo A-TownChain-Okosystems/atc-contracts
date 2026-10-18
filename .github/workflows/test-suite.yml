@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check out pinned ATCLang lexer-fix candidate
+      - name: Check out merged ATCLang parser commit
         uses: actions/checkout@v4
         with:
           repository: A-TownChain-Okosystems/atclang
-          ref: 054cd0e2693824670893e0b6c04f48dc0df80622
+          ref: c84862e18b8782dcd2aebd403de630ba47f71b88
           path: atclang
       - uses: dtolnay/rust-toolchain@stable
       - name: Build canonical ATCLang CLI
