@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: A-TownChain-Okosystems/atclang
-          ref: b213999ccd1c1f47db7c1e7321cf4a3a79e1e9d8
+          ref: 5d0b9d653363bd270cbbb16dc07cd468ad3a130f
           path: atclang
       - uses: dtolnay/rust-toolchain@stable
       - name: Build canonical ATCLang CLI
