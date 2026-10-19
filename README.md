@@ -16,11 +16,11 @@ ATC Contracts — Smart Contracts & Registry (ATCLang-Zielplattform).
 
 ## ATC Compliance & Governance (ATC-STD-201 / 202 / 203)
 
-**ATC COMPLIANCE: R3** — auditiert am 2026-09-07 (atc-repo-audit; R-Level aus `.atc/repository.yaml`).
+**ATC COMPLIANCE: R3 — HISTORISCHER AUDIT-STAND (2026-09-07).** Dieser datierte R-Level ist keine aktuelle Exact-SHA-Verifikation und keine Produktionsfreigabe; aktuellen Status und Evidence im Repository prüfen.
 Architekturentscheidungen: zentral im [DECISIONS_REGISTER](https://github.com/A-TownChain-Okosystems/a-townchain-os-docs/blob/main/docs/DECISIONS_REGISTER.md) (AD-Nummern verbindlich; lokale Entscheidungen in `docs/decisions/`).
 
 - **Purpose:** Smart-Contract-Sammlung der Chain (L5).
-- **Scope:** Layer L5, Domain contracts — atc-contracts als SPEC in der 23-Repo-Landschaft (AD-024/026).
+- **Scope:** Layer L5, Domain contracts — atc-contracts als Contracts-Repository im Organisationsinventar; der GitHub-Bestand vom 2026-10-09 umfasst 33 Repositories (26 nicht archiviert, 7 archiviert).
 - **Architecture:** ATC-LIC License Gate (ATVM blockt unlizentierten Code — Code is Law), ATVM-Verifizierung, .atc-Referenzvertraege (Registry-Standard).
 - **Features:** Vertrags-Sammlung + Lizenz-Gate-Referenzen; Chain-ID 658467.
 - **Installation:** Modul-Build je Sprache (rust); Integration via Monorepo-Workspace (a-townchain-os, sync_modules.py).
